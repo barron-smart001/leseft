@@ -3,11 +3,16 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #14243a;
+  --foreground: #17283e;
+  --navy: #14243a;
+  --gold: #b68a45;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -15,11 +20,11 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 ::selection {
-  background: #c49a52;
+  background: var(--gold);
   color: #ffffff;
 }
 
@@ -27,29 +32,62 @@ a {
   text-decoration: none;
 }
 
-button, a {
-  transition: all 0.25s ease;
+button,
+a {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
 }
 
 .container-width {
-  width: min(1200px, calc(100% - 48px));
+  width: min(1240px, calc(100% - 48px));
   margin-inline: auto;
 }
 
+.text-navy {
+  color: var(--navy);
+}
+
+.bg-navy {
+  background-color: var(--navy);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
 .section-label {
-  color: #a77c38;
+  color: #967036;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .section-padding {
-  padding-block: 100px;
+  padding-block: 88px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .container-width {
+    width: min(100% - 40px, 1240px);
+  }
+
   .section-padding {
-    padding-block: 65px;
+    padding-block: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }
