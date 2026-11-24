@@ -1,0 +1,55 @@
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #14243a;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #c49a52;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+button, a {
+  transition: all 0.25s ease;
+}
+
+.container-width {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.section-label {
+  color: #a77c38;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.section-padding {
+  padding-block: 100px;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-block: 65px;
+  }
+}
