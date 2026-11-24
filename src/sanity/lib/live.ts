@@ -1,9 +1,23 @@
-// Querying with "sanityFetch" will keep content automatically updated
-// Before using it, import and render "<SanityLive />" in your layout, see
-// https://github.com/sanity-io/next-sanity#live-content-api for more information.
-import { defineLive } from "next-sanity/live";
-import { client } from './client'
+﻿import {cacheLife} from 'next/cache'
+import {defineLive} from 'next-sanity/live'
+import {client} from './client'
 
-export const { sanityFetch, SanityLive } = defineLive({
+export const {sanityFetch, SanityLive} = defineLive({
   client,
-});
+  serverToken: false,
+  browserToken: false,
+})
+
+export async function cachedSanityFetch<T>(options: {
+  query: string
+  params?: Record<string, unknown>
+}) {
+  'use cache'
+  cacheLife('minutes')
+  const result = await sanityFetch({
+    ...options,
+    perspective: 'published',
+    stega: false,
+  })
+  return result.data as T
+}

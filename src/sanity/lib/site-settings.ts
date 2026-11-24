@@ -1,5 +1,6 @@
-import type {SanityImageSource} from '@sanity/image-url'
-import {client} from '@/sanity/lib/client'
+
+import type { SanityImageSource } from '@sanity/image-url'
+import { cachedSanityFetch } from '@/sanity/lib/live'
 
 export interface SiteContentItem {
   _key: string
@@ -12,7 +13,7 @@ export interface SiteContentItem {
 export interface SiteSettings {
   siteName?: string
   heroTitle?: string
-  heroDescription?: string
+  heroDescription?: string 
   heroImage?: SanityImageSource
   aboutTitle?: string
   aboutDescription?: string
@@ -43,7 +44,6 @@ const siteSettingsQuery = `*[_type == "siteSettings"] | order(_updatedAt desc)[0
   address
 }`
 
-export async function getSiteSettings() {
-  return client.fetch<SiteSettings | null>(siteSettingsQuery)
+export function getSiteSettings() {
+  return cachedSanityFetch<SiteSettings | null>({query: siteSettingsQuery})
 }
-
